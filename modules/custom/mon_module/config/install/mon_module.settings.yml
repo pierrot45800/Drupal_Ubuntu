@@ -1,0 +1,3 @@
+#/modules/mon_module/config/install/mon_module.settings.yml
+message: 'yolo'
+langcode: 'fr'

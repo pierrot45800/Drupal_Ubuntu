@@ -1,0 +1,5 @@
+name: Mon module
+core_version_requirement: ^9
+type: module
+package: Mes modules
+description: Mon premier module sur Drupal 9.

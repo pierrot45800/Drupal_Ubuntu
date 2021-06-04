@@ -776,9 +776,9 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
  * Keep this code block at the end of this file to take full effect.
  */
 #
-# if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
-#   include $app_root . '/' . $site_path . '/settings.local.php';
-# }
+ if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
+   include $app_root . '/' . $site_path . '/settings.local.php';
+ }
 $databases['default']['default'] = array (
   'database' => 'portal',
   'username' => 'lima',
@@ -790,3 +790,8 @@ $databases['default']['default'] = array (
   'driver' => 'mysql',
 );
 $settings['config_sync_directory'] = 'sites/default/files/config_2jGsJbC3QKU53up3sAPbbB3zIEwodncYCWBjQEuBcyZ3KQrn2ZuxIFt7IrqAtbMIKzNM1MHclA/sync';
+
+error_reporting(E_ALL);
+ini_set('display_errors', TRUE);
+ini_set('display_startup_errors', TRUE);
+$config['system.logging']['error_level'] = 'verbose';

@@ -1,0 +1,5 @@
+mon_module.ma_page_menu:
+    title: 'Ma page'
+    description: 'Lien vers ma page'
+    route_name: mon_module.ma_page
+    menu_name: main

@@ -1,0 +1,8 @@
+mon_module.ma_page:
+    path: '/ma-page'
+    defaults:
+        _controller: '\Drupal\mon_module\Controller\MaPageController::maPage'
+        _title: 'Definit dans mon_module.routing utilisant service + controller'
+    requirements:
+        _permission: 'access content'
+
