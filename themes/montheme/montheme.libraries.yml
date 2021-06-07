@@ -1,0 +1,25 @@
+global-css:
+  version: VERSION
+  css:
+    theme:
+      css/styles.css: {}
+      css/colors.css: {}
+      css/component/main_navigation.css: {}
+      css/layout.css: {}
+      css/print.css: { media: print }
+
+  #js:
+   # js/javascript.js: {}
+
+#using assets
+global-js:
+  dependencies:
+    - core/jquery
+
+#adding a web font to the theme
+
+font_pacifico:
+  css:
+    theme:
+      "https://fonts.googleapis.com/css2?family=Pacifico&display=swap": { type: external }
+      css/colors.css: {}

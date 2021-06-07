@@ -58,7 +58,7 @@ global-styling:
       css/components/ui-dialog.css: {}
     layout:
       css/layout.css: {}
-    theme:
+    theme:layout:
       css/colors.css: {}
       css/print.css: { media: print }
 

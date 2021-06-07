@@ -1,0 +1,36 @@
+name: Montheme
+type: theme
+description: 'ceci est mon thème'
+core_version_requirement: ^8 || ^9
+base theme: classy
+screenshot: montheme.jpg
+
+regions:
+  header: Header
+  montheme_menu: Navigation #region created here
+  content: Content
+  sidebar_first: 'Sidebar first'
+  footer: Footer
+  page_top: Page top
+  page_bottom: Page bottom
+
+
+libraries:
+  - montheme/global-css
+  - montheme/global-js
+  - montheme/font_pacifico
+
+#extending a library
+#libraries-extend:
+ # core/drupal.user:
+  #  - montheme/user1
+   # - montheme/user2
+
+#overriding or replacing a library
+#libraries-override:
+ # core/drupal.collapse: montheme/collapse
+
+#removing a particular stylesheet
+#stylesheets-remove:
+ # - core/assets/vendor/normalize-css/normalize.css
+

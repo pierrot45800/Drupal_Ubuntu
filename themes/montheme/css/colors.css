@@ -1,0 +1,15 @@
+body{
+  margin-left: 50px;
+}
+header{
+  background-color: grey;
+  font-family: "Pacifico", cursive;
+}
+
+main{
+  background-color: red;
+}
+
+#montheme_menu{
+  background-color: beige;
+}
