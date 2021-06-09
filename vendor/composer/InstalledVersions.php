@@ -32,7 +32,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '9387a27777cb87e1c0052baa63a4d843ad92e37e',
+    'reference' => 'a46a6eb5c82fdd7c7854da6701021d30bd5763fd',
     'name' => 'drupal/legacy-project',
   ),
   'versions' => 
@@ -275,6 +275,15 @@ private static $installed = array (
       array (
         0 => '9.1.9',
       ),
+    ),
+    'drupal/bootstrap' => 
+    array (
+      'pretty_version' => '3.23.0',
+      'version' => '3.23.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '8.x-3.23',
     ),
     'drupal/breakpoint' => 
     array (
@@ -741,7 +750,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '9387a27777cb87e1c0052baa63a4d843ad92e37e',
+      'reference' => 'a46a6eb5c82fdd7c7854da6701021d30bd5763fd',
     ),
     'drupal/link' => 
     array (
@@ -1244,8 +1253,8 @@ private static $installed = array (
     array (
       'provided' => 
       array (
-        0 => '1.0',
-        1 => '^1.0',
+        0 => '^1.0',
+        1 => '1.0',
       ),
     ),
     'psr/event-dispatcher-implementation' => 
