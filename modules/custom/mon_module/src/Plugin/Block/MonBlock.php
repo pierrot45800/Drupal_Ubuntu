@@ -5,27 +5,39 @@ namespace Drupal\mon_module\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Form\FormBase;
+
 
 /**
  * Provides a 'MonBlock' block
  *
  * @Block(
- * id = "mon_block",
- * admin_label = @Translation("Mon premier bloc"),
+ * id = "mon_module_block",
+ * admin_label = @Translation("Un bloc !"),
  * category = @Translation("custom"),
  * )
  */
 
 class MonBlock extends BlockBase {
 
-  public function build(){
-    //$date_naissance = \Drupal::config('mon_module.settings')->get('message');
-    $date_naissance2 = \Drupal::config('mon_module.settings')->get('message');
+  /**
+   * {@inheritDoc}
+   * result = rendering a form or a view
+   */
+  public function build(): array
+  {
+/*
+    return array(
+      '#theme' => 'bootstrap_sass',
+      '#title' => 'Websolutions agency',
+      '#description'=> 'Websolutions Agency is the industry meading bla bla bla...');
 
-    return[
-      '#markup' => 'Voici ma date de naissance aa:'.$date_naissance2
-      ];
+*/
+    return \Drupal::formBuilder()->getForm('Drupal\mon_module\Form\TestForm');
   }
+
 
   public function blockForm($form, FormStateInterface $form_state){
     $form['mon_texte'] = [
@@ -37,6 +49,7 @@ class MonBlock extends BlockBase {
     return $form;
   }
 
+
   /**
    * Overrides \Drupal\block\BlockBase::blockSubmit().
    */
@@ -44,4 +57,17 @@ class MonBlock extends BlockBase {
   public function blockSubmit($form, FormStateInterface $form_state){
     $this->configuration['mon_texte'] = $form_state->getValue('mon_texte');
   }
+
+
+  /**
+   * {@inheritdoc }
+   */
+
+  protected function blockAccess(AccountInterface $account){
+    return AccessResult::allowedIfHasPermission($account, 'access content');
+  }
+
+
+
+
 }

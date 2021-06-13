@@ -1,0 +1,15 @@
+<?php
+
+function mon_module_theme(): array
+{
+  return array(
+    'mon_module' => array(
+      'variables' => array(
+        'title' => 'Default title !!!!!',
+        'description' => 'desc!'
+      ),
+      'template' => 'block--mon-module'));
+}
+
+
+?>

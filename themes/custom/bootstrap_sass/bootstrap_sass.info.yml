@@ -19,6 +19,12 @@ regions:
   footer: 'Footer'
   page_top: 'Page top'
   page_bottom: 'Page bottom'
+  test_menu: 'Content' #created by my own !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  front: 'Front Page Block'
+
+
+libraries:
+  - core/normalize
 
 libraries-extend:
   bootstrap/framework:

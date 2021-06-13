@@ -1,0 +1,5 @@
+name: Module de blocks
+core_version_requirement: ^9
+type: module
+package: Mes modules
+description: Mon deuxième module sur Drupal 9.

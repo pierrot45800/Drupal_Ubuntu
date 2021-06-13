@@ -1,0 +1,7 @@
+page_example.simple:
+  path: '/custom/page-example/simple'
+  defaults:
+    -controller: 'Drupal\page_example\Controller\PageExempleController::simple'
+  requirements:
+    _permission: 'access simple page'
+

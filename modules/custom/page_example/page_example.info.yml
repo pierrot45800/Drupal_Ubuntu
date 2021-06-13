@@ -1,0 +1,5 @@
+name: Page Example
+type: module
+description: this is a complete desc
+package: Example modules
+core_version_requirement: ^9
