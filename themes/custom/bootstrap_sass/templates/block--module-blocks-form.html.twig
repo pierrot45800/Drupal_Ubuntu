@@ -1,0 +1,22 @@
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+    {{ content }}
+    <p>bonjour je suis là!</p>
+
+  <header>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </header>
+
+<div>
+  <canvas id="myChart"></canvas>
+</div>
+
+
+  {% endblock %}
+</div>
+

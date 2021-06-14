@@ -31,6 +31,7 @@ class TestForm extends FormBase{
       '#value' => $this->t('Save'),
       '#button_type' => 'primary',
     );
+    $form['#attached']['library'][] = 'module_blocks/test_js';
     return $form;
   }
 

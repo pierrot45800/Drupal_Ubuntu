@@ -1,0 +1,18 @@
+module_blocks:
+  version: VERSION
+  js:
+    js/test_chart.js: {}
+
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal.ajax
+    - core/drupalSettings
+
+
+test_js:
+  version: 1.x
+  js:
+    js/test_chart.js: {}
+  dependencies:
+    - core/jquery
