@@ -10,6 +10,13 @@ function module_blocks_theme(): array
       ),
       'template' => 'block--mon-module'));
 }
+/*
+function test_db():array{
+  $database = \Drupal::database();
+  $query = $database->query("SELECT nid FROM node");
+  $result = $query->fetchAll();
+  return $result;
 
-
+}
+*/
 ?>

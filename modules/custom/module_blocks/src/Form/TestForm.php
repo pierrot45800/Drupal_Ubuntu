@@ -20,44 +20,10 @@ class TestForm extends FormBase{
    */
   public function buildForm(array $form, FormStateInterface $form_state): array
   {
-    $form['candidate_name'] = array(
+    $form['type_name'] = array(
       '#type' => 'textfield',
-      '#title' => t('Candidate Name:'),
+      '#title' => t('Type id:'),
       '#required' => TRUE,
-    );
-    $form['candidate_mail'] = array(
-      '#type' => 'email',
-      '#title' => t('Email ID:'),
-      '#required' => TRUE,
-    );
-    $form['candidate_number'] = array (
-      '#type' => 'tel',
-      '#title' => t('Mobile no'),
-    );
-    $form['candidate_dob'] = array (
-      '#type' => 'date',
-      '#title' => t('DOB'),
-      '#required' => TRUE,
-    );
-    $form['candidate_gender'] = array (
-      '#type' => 'select',
-      '#title' => ('Gender'),
-      '#options' => array(
-        'Female' => t('Female'),
-        'male' => t('Male'),
-      ),
-    );
-    $form['candidate_confirmation'] = array (
-      '#type' => 'radios',
-      '#title' => ('Are you above 18 years old?'),
-      '#options' => array(
-        'Yes' =>t('Yes'),
-        'No' =>t('No')
-      ),
-    );
-    $form['candidate_copy'] = array(
-      '#type' => 'checkbox',
-      '#title' => t('Send me a copy of the application.'),
     );
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = array(
@@ -74,8 +40,8 @@ class TestForm extends FormBase{
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
 
-    if (strlen($form_state->getValue('candidate_number')) < 10) {
-      $form_state->setErrorByName('candidate_number', $this->t('Mobile number is too short.'));
+    if (strlen($form_state->getValue('type_name')) == 0) {
+      $form_state->setErrorByName('type_name', $this->t('Veuillez indiquer un numéor svp.'));
     }
 
   }
@@ -85,10 +51,18 @@ class TestForm extends FormBase{
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    foreach ($form_state->getValues() as $key => $value) {
-      \Drupal::messenger()->addMessage($key . ': ' . $value);
-
+    $val = $form_state->getValue('type_name');
+    $database = \Drupal::database();
+    $query = $database->query("SELECT uuid FROM node where nid=$val");
+    $result = $query->fetchAll();
+    foreach ($result as $key => $value){
+      \Drupal::messenger()->addMessage('type' . ': ' . get_class($value));
+      $value_string = strval($value->uuid);
+      \Drupal::messenger()->addMessage('type' . ': ' . $value_string);
+      //echo $value_string;
     }
+
+
   }
 
   public function getFormId()
@@ -99,4 +73,3 @@ class TestForm extends FormBase{
 
 
 }
-

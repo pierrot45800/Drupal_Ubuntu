@@ -8,6 +8,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Form\FormBase;
+use PDO;
 
 
 /**
@@ -34,10 +35,11 @@ class MonBlock extends BlockBase {
       '#title' => 'Websolutions agency',
       '#description'=> 'Websolutions Agency is the industry meading bla bla bla...');
 
-*//*
-    return [
-      '#markup'=> $this->t('bonjour')
-    ];*/
+*/
+
+      //$pdo = new PDO("mysql:host=localhost;dbname=portal", "lima","lima");
+
+
 
     return \Drupal::formBuilder()->getForm('Drupal\module_blocks\Form\TestForm');
   }
