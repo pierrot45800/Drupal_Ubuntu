@@ -24,6 +24,7 @@ class TestForm extends FormBase{
       '#type' => 'textfield',
       '#title' => t('Type id:'),
       '#required' => TRUE,
+      '#attributes' => array('id' => 'test')
     );
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = array(
