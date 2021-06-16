@@ -3,9 +3,30 @@
  * The UserLogin screens, which controls the customized background image.
  */
 
-html {
-  height: 100%;
+html, body {
+  width: 100%;
+  height:100%;
 }
+
+body.simplelogin {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 30s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
 body.simplelogin {
   min-height: 100%;
   line-height: 1.5;
@@ -65,16 +86,16 @@ body.simplelogin {
   font-size: 19px;
   color: #545454;
 }
-.simplelogin a { 
-  border-bottom: 0px; 
+.simplelogin a {
+  border-bottom: 0px;
 }
-.simplelogin .simplelogin-link a { 
-  border: 1px solid;  padding: 4px 8px; 
+.simplelogin .simplelogin-link a {
+  border: 1px solid;  padding: 4px 8px;
 }
-.simplelogin form.user-pass p,.simplelogin-form .description { 
+.simplelogin form.user-pass p,.simplelogin-form .description {
   font-size: 13px;
   color: #b4b4b4;
-  text-align: left; 
+  text-align: left;
 }
 .simplelogin-form input {
   outline: 0;
@@ -112,7 +133,7 @@ body.simplelogin {
   color: #b4b4b4;
   font-size: 13px;
   text-align: center;
-} 
+}
 .simplelogin-form .forgot-password a {
   text-decoration: none;
 }
@@ -138,14 +159,14 @@ body.simplelogin {
   -moz-background-size: cover;
   -webkit-background-size: cover;
   background-attachment: fixed;
-  position: relative;  
-} 
+  position: relative;
+}
 .simplelogin .form-control {
   height: inherit;
 }
 body.simplelogin.opacity::before {
   content: "";
-  background-color: rgba(253, 253, 253, 0.5);  
+  background-color: rgba(253, 253, 253, 0.5);
   display: block;
   position: absolute;
   z-index: -1;
@@ -170,10 +191,10 @@ body.simplelogin.opacity::before {
   color: #ababab;
 }
 /* Portrait and Landscape */
-@media only screen 
+@media only screen
   and (max-device-width: 480px)
   and (-webkit-min-device-pixel-ratio: 2) {
-  .simplelogin-form { 
+  .simplelogin-form {
     width: 75% !important;
     padding: 30px;
   }
