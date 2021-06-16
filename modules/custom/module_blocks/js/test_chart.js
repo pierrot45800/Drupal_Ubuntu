@@ -49,9 +49,15 @@
   });
 */
 
-  $( "input" ).click(
+  $( "#test" ).click(
     function() {
-      alert("bonjour");
+      alert("bonjour!!!!!!!");
+    }
+  );
+
+  $( "p" ).click(
+    function() {
+      alert("test du p!!!");
     }
   );
 
