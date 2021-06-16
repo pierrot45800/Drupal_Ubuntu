@@ -5,6 +5,7 @@
  * The module file for simplelogin pages module.
  */
 
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
 use Drupal\file\Entity\File;
@@ -13,7 +14,7 @@ use Drupal\simplelogin\Controller;
 
 /**
  * Implements hook_help().
- * 
+ *
  * {@inheritdoc}
  */
 function simplelogin_help($route_name, RouteMatchInterface $route_match) {
@@ -33,7 +34,7 @@ function simplelogin_help($route_name, RouteMatchInterface $route_match) {
  * {@inheritdoc}
  */
 function simplelogin_preprocess_html(&$variables) {
-  $path = \Drupal::service('path.current')->getPath();  
+  $path = \Drupal::service('path.current')->getPath();
   $user_path = array('/user', '/user/login', '/user/password', '/user/register');
   $current_user = \Drupal::currentUser();  // Whether the current user is anonymous or authenticated
   if (!$current_user->id()) {
@@ -41,7 +42,7 @@ function simplelogin_preprocess_html(&$variables) {
       $variables['attributes']['class'][] = 'simplelogin';
       $background_opacity = simple_login_settings('opacity');
       if($background_opacity) {
-        $variables['attributes']['class'][] = 'opacity'; 
+        $variables['attributes']['class'][] = 'opacity';
       }
     }
   }
@@ -54,7 +55,7 @@ function simplelogin_preprocess_html(&$variables) {
  */
 function simplelogin_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
   if ($hook == 'page') {
-    $path = \Drupal::service('path.current')->getPath();  
+    $path = \Drupal::service('path.current')->getPath();
     $user_path = array('/user', '/user/login', '/user/password', '/user/register');
     $current_user = \Drupal::currentUser();  // Whether the current user is anonymous or authenticated
     if (!$current_user->id()) {
@@ -102,7 +103,7 @@ function simplelogin_page_attachments(array &$attachments) {
   }
 }
 
-function simplelogin_preprocess_simplelogin(&$variables) {  
+function simplelogin_preprocess_simplelogin(&$variables) {
   $path = \Drupal::service('path.current')->getPath();
   $module_path = drupal_get_path('module', 'simplelogin');
 
@@ -111,7 +112,7 @@ function simplelogin_preprocess_simplelogin(&$variables) {
   // Able to use custom variables
   $variables['path'] = $path;
   $variables['base_path'] = base_path();
-  $variables['logo'] = file_url_transform_relative(file_create_url(theme_get_setting('logo.url')));  
+  $variables['logo'] = file_url_transform_relative(file_create_url(theme_get_setting('logo.url')));
   $variables['background_class'] = simple_login_settings('active');
   $variables['background_opacity'] = simple_login_settings('opacity');
   $variables['wrapper_width'] = simple_login_settings('width');
@@ -138,7 +139,7 @@ function simple_login_settings($arguments) {
     break;
     case "image":
       $fileRelativePath = '';
-      if(isset($background_image[0])){ 
+      if(isset($background_image[0])){
         $file = File::load($background_image[0]); // File Load
         if ($file) {
           $fileUrl = $file->getFileUri();
@@ -178,7 +179,7 @@ function simplelogin_theme_registry_alter(&$theme_registry) {
   // Check if file exists in the theme directory.
   $theme = \Drupal::theme()->getActiveTheme();
   if (file_exists($theme->getPath().'/templates/page--simplelogin.html.twig')) {
-    $path = drupal_get_path('theme', $theme->getName());    
+    $path = drupal_get_path('theme', $theme->getName());
   }
 
   $theme_registry['page__simplelogin'] = array(
@@ -257,7 +258,7 @@ function simplelogin_password_confirm($element) {
  * {@inheritdoc}
  */
 function simplelogin_css_alter(&$css, \Drupal\Core\Asset\AttachedAssetsInterface $assets) {
-  $path = \Drupal::service('path.current')->getPath();  
+  $path = \Drupal::service('path.current')->getPath();
   $user_path = array('/user', '/user/login', '/user/password', '/user/register');
   $current_user = \Drupal::currentUser();  // Whether the current user is anonymous or authenticated
   if (!$current_user->id()) {
@@ -267,7 +268,7 @@ function simplelogin_css_alter(&$css, \Drupal\Core\Asset\AttachedAssetsInterface
       foreach ($unset_css_array as $key => $value) {
         unset($css[trim($value)]);
       }
-      
+
       // The active theme CSS files are removed from the simple login pages
       $unset_active_css = simple_login_settings('unset_active_css');
       if($unset_active_css) {
@@ -279,5 +280,31 @@ function simplelogin_css_alter(&$css, \Drupal\Core\Asset\AttachedAssetsInterface
         }
       }
     }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function simplelogin_form_user_login_form_alter(&$form, FormStateInterface $form_state) {
+  $form['#submit'][] = 'simplelogin_user_login_submit';
+}
+
+/**
+ * Form submission handler for user_login_form().
+ *{@inheritdoc}
+ * Redirects the user to the dashboard after logging in.
+ */
+function simplelogin_user_login_submit(&$form, FormStateInterface $form_state) {
+  $url = Url::fromRoute('simplelogin.to_homepage');
+
+  // Check if a destination was set, probably on an exception controller.
+  // @see \Drupal\user\Form\UserLoginForm::submitForm()
+  $request = \Drupal::service('request_stack')->getCurrentRequest();
+  if (!$request->request->has('destination')) {
+    $form_state->setRedirectUrl($url);
+  }
+  else {
+    $request->query->set('destination', $request->request->get('destination'));
   }
 }

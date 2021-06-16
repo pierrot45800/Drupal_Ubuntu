@@ -5,3 +5,8 @@ simplelogin.admin_settings_form:
     _title: 'SimpleLogin Settings'
   requirements:
     _permission: 'administer site configuration'
+
+simplelogin.to_homepage:
+  path: '/charts'
+  requirements:
+    _permission: 'access content'
